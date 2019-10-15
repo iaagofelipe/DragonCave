@@ -88,7 +88,6 @@ void menu();
 void iniciarGuerreiro(struct Guerreiro *guerreiro);
 void iniciarArqueiro(struct Arqueiro *arqueiro);
 void iniciarMago(struct Mago *mago);
-void iniciarInimigo(struct Goblin *goblin);
 void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin);
 void iniciarGoblin(struct Goblin *goblin);
 void iniciarElfo(struct Elfo *elfo);
