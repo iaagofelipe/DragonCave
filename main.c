@@ -53,21 +53,29 @@ struct Inimigo{
     int forca;
     int defesa;
     int velocidade;
-}
+};
 
 void menu();
 void iniciarGuerreiro(struct Guerreiro *guerreiro);
 void iniciarArqueiro(struct Arqueiro *arqueiro);
 void iniciarMago(struct Mago *mago);
+void iniciarInimigo(struct Inimigo *inimigo);
+void guerreiroAtacaInimigo(struct Guerreiro *guerreiro, struct Inimigo *inimigo);
 
 int main(int argc, char const *argv[]) {
     menu();
     struct Guerreiro guerreiro;
     struct Arqueiro arqueiro;
     struct Mago mago;
+    struct Inimigo inimigo;
+
     iniciarGuerreiro(&guerreiro);
     iniciarArqueiro(&arqueiro);
     iniciarMago(&mago);
+    iniciarInimigo(&inimigo);
+
+    guerreiroAtacaInimigo(&guerreiro, &inimigo);
+    printf("%d\n", inimigo.pv);
 }
 
 void menu(){
@@ -86,6 +94,7 @@ void iniciarGuerreiro(struct Guerreiro *guerreiro){
     guerreiro->xp = 0;
     guerreiro->nivel = 1;
 }
+
 void iniciarArqueiro(struct Arqueiro *arqueiro){
     arqueiro->pv = 100; 
     arqueiro->velocidade = 30; 
@@ -94,6 +103,7 @@ void iniciarArqueiro(struct Arqueiro *arqueiro){
     arqueiro->xp = 0;
     arqueiro->nivel = 1;
 }
+
 void iniciarMago(struct Mago *mago){
     mago->pv = 100; 
     mago->velocidade = 20; 
@@ -110,4 +120,9 @@ void iniciarInimigo(struct Inimigo *inimigo){
     inimigo->defesa = 2;
     inimigo->velocidade = 5;
     inimigo->nivel = 1;
+}
+
+void guerreiroAtacaInimigo(struct Guerreiro *guerreiro, struct Inimigo *inimigo){
+    int dano = (guerreiro->forca - inimigo->defesa)/10;
+    inimigo->pv-=dano;
 }
