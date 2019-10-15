@@ -4,7 +4,7 @@
     * CARACTERISTICA DOS PERSONAGENS [X]
     * CARACTERISTICA DOS INIMIGOS    [ ]
     * INVENTARIO                     [ ]
-    * XP, NIVEIS                     [ ]
+    * XP, NIVEIS                     [X]
 
 
 
@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+// *** Estrutura dos Personagens ***
 
 struct Guerreiro{
     int id;
@@ -43,17 +45,29 @@ struct Mago{
     int nivel;
 };
 
-void menu()
-void iniciarGuerreiro()
+// *** Estrutura dos Inimigos ***
+
+struct Inimigo{
+    int pv;
+    int nivel;
+    int forca;
+    int defesa;
+    int velocidade;
+}
+
+void menu();
+void iniciarGuerreiro(struct Guerreiro *guerreiro);
+void iniciarArqueiro(struct Arqueiro *arqueiro);
+void iniciarMago(struct Mago *mago);
 
 int main(int argc, char const *argv[]) {
-
+    menu();
     struct Guerreiro guerreiro;
     struct Arqueiro arqueiro;
     struct Mago mago;
-    iniciarGuerreiro(guerreiro);
-    iniciarArqueiro(arqueiro);
-    iniciarMago(mago);
+    iniciarGuerreiro(&guerreiro);
+    iniciarArqueiro(&arqueiro);
+    iniciarMago(&mago);
 }
 
 void menu(){
@@ -72,7 +86,7 @@ void iniciarGuerreiro(struct Guerreiro *guerreiro){
     guerreiro->xp = 0;
     guerreiro->nivel = 1;
 }
-void iniciarArqueiro(struct Guerreiro *guerreiro){
+void iniciarArqueiro(struct Arqueiro *arqueiro){
     arqueiro->pv = 100; 
     arqueiro->velocidade = 30; 
     arqueiro->defesa = 15; 
@@ -80,7 +94,7 @@ void iniciarArqueiro(struct Guerreiro *guerreiro){
     arqueiro->xp = 0;
     arqueiro->nivel = 1;
 }
-void iniciarMago(struct Guerreiro *guerreiro){
+void iniciarMago(struct Mago *mago){
     mago->pv = 100; 
     mago->velocidade = 20; 
     mago->defesa = 15; 
@@ -90,6 +104,10 @@ void iniciarMago(struct Guerreiro *guerreiro){
     mago->nivel = 1;
 }
 
-
-
-
+void iniciarInimigo(struct Inimigo *inimigo){
+    inimigo->pv = 20;
+    inimigo->forca = 5;
+    inimigo->defesa = 2;
+    inimigo->velocidade = 5;
+    inimigo->nivel = 1;
+}
