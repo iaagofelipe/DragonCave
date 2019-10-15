@@ -1,14 +1,18 @@
 /*
     *** RPG DE TURNOS ***
 
-    * CARACTERISTICA DOS PERSONAGENS [X]
-    * CARACTERISTICA DOS INIMIGOS    [ ]
-    * INVENTARIO                     [ ]
-    * XP, NIVEIS                     [X]
-
-
+    * CARACTERISTICA DOS PERSONAGENS          [X]
+    * CARACTERISTICA DOS INIMIGOS             [ ]
+    * CARACTERISTICA DOS BOSS                 [ ]
+    * CONCLUIR OS PERSONAGENS                 [X]
+    * PENSAR NAS REGRAS                       [ ]
+    * INVENTARIO                              [ ]
+    * XP, NIVEIS                              [X]
+    * ESTABELECER AS REGRAS DO JOGO(DE AÇÃO)  [ ]
 
 */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,6 +29,7 @@ struct Guerreiro{
     int xp;
     int nivel;
 };
+
 struct Arqueiro{
     int id;
     int pv;
@@ -34,6 +39,7 @@ struct Arqueiro{
     int xp;
     int nivel;
 };
+
 struct Mago{
     int id;
     int pv;
@@ -47,8 +53,25 @@ struct Mago{
 
 // *** Estrutura dos Inimigos ***
 
-struct Inimigo{
+struct Goblin{
     int pv;
+    int nivel;
+    int forca;
+    int defesa;
+    int velocidade;
+};
+
+struct Elfo{
+    int pv;
+    int nivel;
+    int forca;
+    int defesa;
+    int velocidade;
+};
+
+struct Bruxa{
+    int pv;
+    int magia;
     int nivel;
     int forca;
     int defesa;
@@ -59,23 +82,23 @@ void menu();
 void iniciarGuerreiro(struct Guerreiro *guerreiro);
 void iniciarArqueiro(struct Arqueiro *arqueiro);
 void iniciarMago(struct Mago *mago);
-void iniciarInimigo(struct Inimigo *inimigo);
-void guerreiroAtacaInimigo(struct Guerreiro *guerreiro, struct Inimigo *inimigo);
+void iniciarInimigo(struct Goblin *goblin);
+void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin);
 
 int main(int argc, char const *argv[]) {
     menu();
     struct Guerreiro guerreiro;
     struct Arqueiro arqueiro;
     struct Mago mago;
-    struct Inimigo inimigo;
+    struct Goblin goblin;
 
     iniciarGuerreiro(&guerreiro);
     iniciarArqueiro(&arqueiro);
     iniciarMago(&mago);
-    iniciarInimigo(&inimigo);
+    iniciarGoblin(&goblin);
 
-    guerreiroAtacaInimigo(&guerreiro, &inimigo);
-    printf("%d\n", inimigo.pv);
+    guerreiroAtacaGoblin(&guerreiro, &goblin);
+    printf("%d\n", goblin.pv);
 }
 
 void menu(){
@@ -86,6 +109,8 @@ void menu(){
     printf ("Escolha 3 para Mago\n\n");
 }
 
+// ***Status dos heróis e inimigos***
+ 
 void iniciarGuerreiro(struct Guerreiro *guerreiro){
     guerreiro->pv = 125; 
     guerreiro->velocidade = 15; 
@@ -114,15 +139,34 @@ void iniciarMago(struct Mago *mago){
     mago->nivel = 1;
 }
 
-void iniciarInimigo(struct Inimigo *inimigo){
-    inimigo->pv = 20;
-    inimigo->forca = 5;
-    inimigo->defesa = 2;
-    inimigo->velocidade = 5;
-    inimigo->nivel = 1;
+void iniciarGoblin(struct Goblin *goblin){
+    goblin->pv = 25;
+    goblin->forca = 8;
+    goblin->defesa = 4;
+    goblin->velocidade = 3;
+    goblin->nivel = 1;
 }
 
-void guerreiroAtacaInimigo(struct Guerreiro *guerreiro, struct Inimigo *inimigo){
-    int dano = (guerreiro->forca - inimigo->defesa)/10;
-    inimigo->pv-=dano;
+void iniciarElfo(struct Elfo *elfo){
+    elfo->pv = 20;
+    elfo->forca = 5;
+    elfo->defesa = 3;
+    elfo->velocidade = 8;
+    elfo->nivel = 1;
+}
+
+void iniciarBruxa(struct Bruxa *bruxa){
+    bruxa->pv = 15;
+    bruxa->magia = 10;
+    bruxa->forca = 6;
+    bruxa->defesa = 2;
+    bruxa->velocidade = 6;
+    bruxa->nivel = 1;
+}
+
+// ***Ações de batalha***
+
+void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin){
+    int dano = (guerreiro->forca - goblin->defesa)/10;
+    goblin->pv -= dano;
 }
