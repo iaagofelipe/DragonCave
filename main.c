@@ -90,6 +90,9 @@ void iniciarArqueiro(struct Arqueiro *arqueiro);
 void iniciarMago(struct Mago *mago);
 void iniciarInimigo(struct Goblin *goblin);
 void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin);
+void iniciarGoblin(struct Goblin *goblin);
+void iniciarElfo(struct Elfo *elfo);
+void iniciarBruxa(struct Bruxa *bruxa);
 
 int main(int argc, char const *argv[]) {
     menu();
