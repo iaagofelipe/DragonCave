@@ -28,6 +28,7 @@ struct Guerreiro{
     int velocidade;
     int xp;
     int nivel;
+    int cura;
 };
 
 struct Arqueiro{
@@ -38,6 +39,7 @@ struct Arqueiro{
     int velocidade;
     int xp;
     int nivel;
+    int cura;
 };
 
 struct Mago{
@@ -49,6 +51,7 @@ struct Mago{
     int velocidade;
     int xp;
     int nivel;
+    int cura;
 };
 
 // *** Estrutura dos Inimigos ***
@@ -59,6 +62,7 @@ struct Goblin{
     int forca;
     int defesa;
     int velocidade;
+    int cura;
 };
 
 struct Elfo{
@@ -67,6 +71,7 @@ struct Elfo{
     int forca;
     int defesa;
     int velocidade;
+    int cura;
 };
 
 struct Bruxa{
@@ -76,6 +81,7 @@ struct Bruxa{
     int forca;
     int defesa;
     int velocidade;
+    int cura;
 };
 
 void menu();
@@ -110,33 +116,36 @@ void menu(){
 }
 
 // ***Status dos heróis e inimigos***
- 
+
 void iniciarGuerreiro(struct Guerreiro *guerreiro){
-    guerreiro->pv = 125; 
-    guerreiro->velocidade = 15; 
-    guerreiro->defesa = 30; 
+    guerreiro->pv = 125;
+    guerreiro->velocidade = 15;
+    guerreiro->defesa = 30;
     guerreiro->forca = 50;
     guerreiro->xp = 0;
     guerreiro->nivel = 1;
+    guerreiro->cura = 5;
 }
 
 void iniciarArqueiro(struct Arqueiro *arqueiro){
-    arqueiro->pv = 100; 
-    arqueiro->velocidade = 30; 
-    arqueiro->defesa = 15; 
+    arqueiro->pv = 100;
+    arqueiro->velocidade = 30;
+    arqueiro->defesa = 15;
     arqueiro->forca = 30;
     arqueiro->xp = 0;
     arqueiro->nivel = 1;
+    arqueiro->cura = 5;
 }
 
 void iniciarMago(struct Mago *mago){
-    mago->pv = 100; 
-    mago->velocidade = 20; 
-    mago->defesa = 15; 
+    mago->pv = 100;
+    mago->velocidade = 20;
+    mago->defesa = 15;
     mago->forca = 35;
     mago->magia = 50;
     mago->xp = 0;
     mago->nivel = 1;
+    mago->cura = 5;
 }
 
 void iniciarGoblin(struct Goblin *goblin){
@@ -145,6 +154,7 @@ void iniciarGoblin(struct Goblin *goblin){
     goblin->defesa = 4;
     goblin->velocidade = 3;
     goblin->nivel = 1;
+    goblin->cura = 5;
 }
 
 void iniciarElfo(struct Elfo *elfo){
@@ -153,6 +163,7 @@ void iniciarElfo(struct Elfo *elfo){
     elfo->defesa = 3;
     elfo->velocidade = 8;
     elfo->nivel = 1;
+    elfo->cura = 5;
 }
 
 void iniciarBruxa(struct Bruxa *bruxa){
@@ -162,6 +173,7 @@ void iniciarBruxa(struct Bruxa *bruxa){
     bruxa->defesa = 2;
     bruxa->velocidade = 6;
     bruxa->nivel = 1;
+    bruxa->cura = 5;
 }
 
 // ***Ações de batalha***
