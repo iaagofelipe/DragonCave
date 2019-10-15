@@ -1,3 +1,16 @@
+
+/*
+    *** RPG DE TURNOS ***
+
+    * CARACTERISTICA DOS PERSONAGENS [X]
+    * CARACTERISTICA DOS INIMIGOS    [ ]
+    * INVENTARIO                     [ ]
+    * XP, NIVEIS                     [ ]
+
+
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,34 +19,47 @@
 
 struct Guerreiro{
     int id;
-    int vida;
-    int ataque_corpo_corpo;
-    int ataque_distancia;
-    int cura
-}
+    int pv;
+    int força;
+    int defesa;
+    int velocidade;
+    int xp;
+    int nivel;
+};
 struct Arqueiro{
     int id;
-    int vida;
-    int ataque_corpo_corpo;
-    int ataque_distancia;
-    int cura
-}
+    int pv;
+    int força;
+    int defesa;
+    int velocidade;
+    int xp;
+    int nivel;
+};
 struct Mago{
     int id;
-    int vida;
+    int pv;
     int magia;
-    int ataque_corpo_corpo;
-    int ataque_distancia;
-    int cura
-}
+    int força;
+    int defesa;
+    int velocidade;
+    int xp;
+    int nivel;
+};
 
 int main(int argc, char const *argv[]) {
-    printf ("\n");
-    printf ("\n");
-    printf ("Bem vindo ao DragonCave!!\n");
-    printf ("\n");
-    printf ("\n");
-    printf ("Agora preciso que voce escolha uma classe");
-    printf ("\n");
-    printf ("\n");
+    printf ("\n\nBem vindo ao DragonCave!!\n\n");
+    printf ("Agora preciso que voce escolha uma classe\n\n");
+    printf ("Escolha 1 para Guerreiro\n\n");
+    // scanf ("%d", &1);
+    printf ("Escolha 2 para Arqueiro\n\n");
+
+    printf ("Escolha 3 para Mago\n\n");
+
+
+    struct Guerreiro guerreiro;
+    struct Arqueiro arqueiro;
+    struct Mago mago;
+    guerreiro.id = 1;
+    arqueiro.id = 2;
+    mago.id = 3;
 }
