@@ -1,4 +1,3 @@
-
 /*
     *** RPG DE TURNOS ***
 
@@ -10,17 +9,15 @@
 
 
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
-
 struct Guerreiro{
     int id;
     int pv;
-    int força;
+    int forca;
     int defesa;
     int velocidade;
     int xp;
@@ -29,7 +26,7 @@ struct Guerreiro{
 struct Arqueiro{
     int id;
     int pv;
-    int força;
+    int forca;
     int defesa;
     int velocidade;
     int xp;
@@ -39,12 +36,14 @@ struct Mago{
     int id;
     int pv;
     int magia;
-    int força;
+    int forca;
     int defesa;
     int velocidade;
     int xp;
     int nivel;
 };
+
+void personagens();
 
 int main(int argc, char const *argv[]) {
     printf ("\n\nBem vindo ao DragonCave!!\n\n");
@@ -63,3 +62,8 @@ int main(int argc, char const *argv[]) {
     arqueiro.id = 2;
     mago.id = 3;
 }
+void personagen(void){
+
+    
+}
+
