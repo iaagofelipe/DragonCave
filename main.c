@@ -22,72 +22,73 @@
 // *** Estrutura dos Personagens ***
 
 struct Guerreiro{
-    int id;
-    int pv;
-    int forca;
-    int defesa;
-    int velocidade;
-    int xp;
-    int nivel;
-    int cura;
+    double id;
+    double pv;
+    double forca;
+    double defesa;
+    double velocidade;
+    double xp;
+    double nivel;
+    double cura;
 };
 
 struct Arqueiro{
-    int id;
-    int pv;
-    int forca;
-    int defesa;
-    int velocidade;
-    int xp;
-    int nivel;
-    int cura;
+    double id;
+    double pv;
+    double forca;
+    double defesa;
+    double velocidade;
+    double xp;
+    double nivel;
+    double cura;
 };
 
 struct Mago{
-    int id;
-    int pv;
-    int magia;
-    int forca;
-    int defesa;
-    int velocidade;
-    int xp;
-    int nivel;
-    int cura;
+    double id;
+    double pv;
+    double magia;
+    double forca;
+    double defesa;
+    double velocidade;
+    double xp;
+    double nivel;
+    double cura;
 };
 
 // *** Estrutura dos Inimigos ***
 
 struct Goblin{
-    int pv;
-    int nivel;
-    int forca;
-    int defesa;
-    int velocidade;
-    int cura;
+    double pv;
+    double nivel;
+    double forca;
+    double defesa;
+    double velocidade;
+    double cura;
 };
 
 struct Elfo{
-    int pv;
-    int nivel;
-    int forca;
-    int defesa;
-    int velocidade;
-    int cura;
+    double pv;
+    double nivel;
+    double forca;
+    double defesa;
+    double velocidade;
+    double cura;
 };
 
 struct Bruxa{
-    int pv;
-    int magia;
-    int nivel;
-    int forca;
-    int defesa;
-    int velocidade;
-    int cura;
+    double pv;
+    double magia;
+    double nivel;
+    double forca;
+    double defesa;
+    double velocidade;
+    double cura;
 };
 
 // ***DECLARAÇÃO DE FUNÇÕES***
 
 void menu();
+int escolha();
 void apresentacao();
 void iniciarGuerreiro(struct Guerreiro *guerreiro);
 void iniciarArqueiro(struct Arqueiro *arqueiro);
@@ -112,7 +113,6 @@ void magoAtacaBruxa(struct Mago *mago, struct Bruxa *bruxa);
 
 
 int main(int argc, char const *argv[]) {
-    menu();
 
     struct Guerreiro guerreiro;
     struct Arqueiro arqueiro;
@@ -120,30 +120,48 @@ int main(int argc, char const *argv[]) {
     struct Goblin goblin;
     struct Bruxa bruxa;
     struct Elfo elfo;
-  
 
-    iniciarGuerreiro(&guerreiro);
-    iniciarArqueiro(&arqueiro);
-    iniciarMago(&mago);
+    menu();
+    int classes= escolha();
+
+    switch (classes)
+    {
+    case 1:
+        iniciarGuerreiro(&guerreiro);
+        break;
+    case 2:
+        iniciarArqueiro(&arqueiro);
+        break;
+    case 3:
+        iniciarMago(&mago);
+        break;
+    default:
+        iniciarGuerreiro(&guerreiro);
+        printf("\n\n A opcao guerreiro foi escolhida por padrao pois nenhuma opcao válida foi iniciada.\n\n");
+        break;
+    }
     
+    //historia
+    apresentacao();
+
     iniciarGoblin(&goblin);
     iniciarElfo(&elfo);
     iniciarBruxa(&bruxa);
 
-    guerreiroAtacaGoblin(&guerreiro, &goblin);
-    guerreiroAtacaElfo(&guerreiro, &elfo);
-    guerreiroAtacaBruxa(&guerreiro, &bruxa);
+    //guerreiroAtacaGoblin(&guerreiro, &goblin);
+    //guerreiroAtacaElfo(&guerreiro, &elfo);
+    //guerreiroAtacaBruxa(&guerreiro, &bruxa);
     
-    arqueiroAtacaGoblin(&arqueiro, &goblin);
-    arqueiroAtacaElfo(&arqueiro, &elfo);
-    arqueiroAtacaBruxa(&arqueiro, &bruxa);
+    // arqueiroAtacaGoblin(&arqueiro, &goblin);
+    // arqueiroAtacaElfo(&arqueiro, &elfo);
+    // arqueiroAtacaBruxa(&arqueiro, &bruxa);
 
-    magoAtacaGoblin(&mago, &goblin);
-    magoAtacaElfo(&mago, &elfo);
-    magoAtacaBruxa(&mago, &bruxa);
+    // magoAtacaGoblin(&mago, &goblin);
+    // magoAtacaElfo(&mago, &elfo);
+    // magoAtacaBruxa(&mago, &bruxa);
 
 
-    // printf("%d\n", goblin.pv);
+    // printf("%.1lf\n", goblin.pv);
 }
 
 
@@ -153,6 +171,20 @@ void menu(){
     printf ("Escolha 1 para Guerreiro\n\n");
     printf ("Escolha 2 para Arqueiro\n\n");
     printf ("Escolha 3 para Mago\n\n");
+}
+
+int escolha(){
+    int escolhaClasse = 0;
+    scanf ("%d", &escolhaClasse);
+    return escolhaClasse;
+}
+// *** Historia do jogo ***
+
+void apresentacao(){
+    printf("\n Bem vindo a nossa aventura no mundo magico do RPG!\n");
+    printf("\n Bom, esse jogo NAO tera algo foda que lhe fara nunca mais esquece-lo.\n");
+    printf("\n Porem, ele tera uma coisa que com certeza eh muito significante, a força de vontade dos desenvolvedores!!\n");
+    printf("\n Portanto, isso eh uma homenagem feita de mim para mim :) \n\n");
 }
 
 // ***Status dos heróis e inimigos***
@@ -165,6 +197,7 @@ void iniciarGuerreiro(struct Guerreiro *guerreiro){
     guerreiro->xp = 0;
     guerreiro->nivel = 1;
     guerreiro->cura = 5;
+    printf("\n Guerreiro inicializado!\n");
 }
 
 void iniciarArqueiro(struct Arqueiro *arqueiro){
@@ -175,6 +208,7 @@ void iniciarArqueiro(struct Arqueiro *arqueiro){
     arqueiro->xp = 0;
     arqueiro->nivel = 1;
     arqueiro->cura = 5;
+    printf("\n Arqueiro inicializado!\n");
 }
 
 void iniciarMago(struct Mago *mago){
@@ -186,6 +220,7 @@ void iniciarMago(struct Mago *mago){
     mago->xp = 0;
     mago->nivel = 1;
     mago->cura = 5;
+    printf("\n Mago inicializado!\n");
 }
 
 void iniciarGoblin(struct Goblin *goblin){
@@ -219,56 +254,52 @@ void iniciarBruxa(struct Bruxa *bruxa){
 // ***Ações de batalha***
 
 void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin){
-    int dano = (guerreiro->forca - goblin->defesa)/10;
-    goblin->pv -= dano;
+    if(guerreiro->forca >= goblin->defesa){
+        double dano = (guerreiro->forca - goblin->defesa)/10;
+        goblin->pv -= dano;
+    } 
+    else
+    {
+        double quebraDefesa = (guerreiro->forca - goblin->defesa)/10;
+        goblin->defesa -= (quebraDefesa * (-1));
+    }
 }
 
 void guerreiroAtacaElfo(struct Guerreiro *guerreiro, struct Elfo *elfo){
-    int dano = (guerreiro->forca - elfo->defesa)/10;
+    double dano = (guerreiro->forca - elfo->defesa)/10;
     elfo->pv -= dano;
 }
 
 void guerreiroAtacaBruxa(struct Guerreiro *guerreiro, struct Bruxa *bruxa){
-    int dano = (guerreiro->forca - bruxa->defesa)/10;
+    double dano = (guerreiro->forca - bruxa->defesa)/10;
     bruxa->pv -= dano;
 }
 void arqueiroAtacaGoblin(struct Arqueiro *arqueiro, struct Goblin *goblin){
-    int dano = (arqueiro->forca - goblin->defesa)/10;
+    double dano = (arqueiro->forca - goblin->defesa)/10;
     goblin->pv -= dano;
 }
 
 void arqueiroAtacaElfo(struct Arqueiro *arqueiro, struct Elfo *elfo){
-    int dano = (arqueiro->forca - elfo->defesa)/10;
+    double dano = (arqueiro->forca - elfo->defesa)/10;
     elfo->pv -= dano;
 }
 
 void arqueiroAtacaBruxa(struct Arqueiro *arqueiro, struct Bruxa *bruxa){
-    int dano = (arqueiro->forca - bruxa->defesa)/10;
+    double dano = (arqueiro->forca - bruxa->defesa)/10;
     bruxa->pv -= dano;
 }
 void magoAtacaGoblin(struct Mago *mago, struct Goblin *goblin){
-    int dano = (mago->forca - goblin->defesa)/10;
+    double dano = (mago->forca - goblin->defesa)/10;
     goblin->pv -= dano;
 }
 
 void magoAtacaElfo(struct Mago *mago, struct Elfo *elfo){
-    int dano = (mago->forca - elfo->defesa)/10;
+    double dano = (mago->forca - elfo->defesa)/10;
     elfo->pv -= dano;
 }
 
 void magoAtacaBruxa(struct Mago *mago, struct Bruxa *bruxa){
-    int dano = (mago->forca - bruxa->defesa)/10;
+    double dano = (mago->forca - bruxa->defesa)/10;
     bruxa->pv -= dano;
 }
 
-// *** Historia do jogo ***
-
-void apresentacao(){
-    if (/*chose*/ 1 ||/*chose*/ 2 ||/*chose*/ 3)
-    {
-        printf("\n Bem vindo a nossa aventura no mundo magico do RPG!\n");
-        printf("\n Bom, esse jogo NAO tera algo foda que lhe fara nunca mais esquece-lo.\n");
-        printf("\n Porem, ele tera uma coisa que com certeza eh muito significante, a força de vontade dos desenvolvedores!!\n");
-        printf("\n Portanto, isso eh uma homenagem feita de mim para mim :) \n\n");
-    }
-}
