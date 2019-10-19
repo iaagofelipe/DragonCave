@@ -111,6 +111,8 @@ void magoAtacaGoblin(struct Mago *mago, struct Goblin *goblin);
 void magoAtacaElfo(struct Mago *mago, struct Elfo *elfo);
 void magoAtacaBruxa(struct Mago *mago, struct Bruxa *bruxa);
 
+// chamada das funcoes de ataque e defesa
+double ataque(double ataque, double defesa, int id_atacante, int id_vitima);
 
 int main(int argc, char const *argv[]) {
 
@@ -140,7 +142,7 @@ int main(int argc, char const *argv[]) {
         printf("\n\n A opcao guerreiro foi escolhida por padrao pois nenhuma opcao válida foi iniciada.\n\n");
         break;
     }
-    
+
     //historia
     apresentacao();
 
@@ -148,20 +150,6 @@ int main(int argc, char const *argv[]) {
     iniciarElfo(&elfo);
     iniciarBruxa(&bruxa);
 
-    //guerreiroAtacaGoblin(&guerreiro, &goblin);
-    //guerreiroAtacaElfo(&guerreiro, &elfo);
-    //guerreiroAtacaBruxa(&guerreiro, &bruxa);
-    
-    // arqueiroAtacaGoblin(&arqueiro, &goblin);
-    // arqueiroAtacaElfo(&arqueiro, &elfo);
-    // arqueiroAtacaBruxa(&arqueiro, &bruxa);
-
-    // magoAtacaGoblin(&mago, &goblin);
-    // magoAtacaElfo(&mago, &elfo);
-    // magoAtacaBruxa(&mago, &bruxa);
-
-
-    // printf("%.1lf\n", goblin.pv);
 }
 
 
@@ -253,53 +241,12 @@ void iniciarBruxa(struct Bruxa *bruxa){
 
 // ***Ações de batalha***
 
-void guerreiroAtacaGoblin(struct Guerreiro *guerreiro, struct Goblin *goblin){
-    if(guerreiro->forca >= goblin->defesa){
-        double dano = (guerreiro->forca - goblin->defesa)/10;
-        goblin->pv -= dano;
-    } 
-    else
-    {
-        double quebraDefesa = (guerreiro->forca - goblin->defesa)/10;
-        goblin->defesa -= (quebraDefesa * (-1));
-    }
-}
+/**
+  Função de ataque geral, onde serão passados o ataque do atacante e a defesa da
+  vitima, junto com suas id para serem identificadas pelas regras do jogo
+*/
 
-void guerreiroAtacaElfo(struct Guerreiro *guerreiro, struct Elfo *elfo){
-    double dano = (guerreiro->forca - elfo->defesa)/10;
-    elfo->pv -= dano;
-}
+double ataque(double ataque, double defesa, int id_atacante, int id_vitima){
 
-void guerreiroAtacaBruxa(struct Guerreiro *guerreiro, struct Bruxa *bruxa){
-    double dano = (guerreiro->forca - bruxa->defesa)/10;
-    bruxa->pv -= dano;
+  return 0.0;
 }
-void arqueiroAtacaGoblin(struct Arqueiro *arqueiro, struct Goblin *goblin){
-    double dano = (arqueiro->forca - goblin->defesa)/10;
-    goblin->pv -= dano;
-}
-
-void arqueiroAtacaElfo(struct Arqueiro *arqueiro, struct Elfo *elfo){
-    double dano = (arqueiro->forca - elfo->defesa)/10;
-    elfo->pv -= dano;
-}
-
-void arqueiroAtacaBruxa(struct Arqueiro *arqueiro, struct Bruxa *bruxa){
-    double dano = (arqueiro->forca - bruxa->defesa)/10;
-    bruxa->pv -= dano;
-}
-void magoAtacaGoblin(struct Mago *mago, struct Goblin *goblin){
-    double dano = (mago->forca - goblin->defesa)/10;
-    goblin->pv -= dano;
-}
-
-void magoAtacaElfo(struct Mago *mago, struct Elfo *elfo){
-    double dano = (mago->forca - elfo->defesa)/10;
-    elfo->pv -= dano;
-}
-
-void magoAtacaBruxa(struct Mago *mago, struct Bruxa *bruxa){
-    double dano = (mago->forca - bruxa->defesa)/10;
-    bruxa->pv -= dano;
-}
-
